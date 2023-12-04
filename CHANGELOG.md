@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+## [0.5.5] - 2023-12-01
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+- Fixed versions in setup.py
+
+## [0.5.4] - 2023-11-13
+### Added
 - Allow imaging callback's `to_file` to use state information in the file name
 ### Changed
 ### Deprecated
@@ -15,6 +30,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Fixed a bug in access metrics function and callbacks that use it
 - Fixed bug where schedulers were called before optimisers with newer versions of pytorch
 - Fixed a bug where the csv logger closed the file too early
+- Fixed compat with pytorch > 1.1.0 versioning
+- Fixed typos in doc strings
+- Fixes for tests where pytorch >2 Tensors were causing issues with mocks
+- Fix bug in gradient clipping where the parameter generator was consumed on the first pass
 
 ## [0.5.3] - 2020-01-31
 ### Added

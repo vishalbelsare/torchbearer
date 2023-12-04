@@ -6,7 +6,7 @@ import torch
 
 
 class GradientNormClipping(Callback):
-    """GradientNormClipping callback, which uses 'torch.nn.utils.clip_grad_norm\_' to clip the gradient norms to the
+    """GradientNormClipping callback, which uses 'torch.nn.utils.clip_grad_norm_' to clip the gradient norms to the
     given value. If params is None they will be retrieved from state.
 
     Example: ::
@@ -57,7 +57,7 @@ class GradientNormClipping(Callback):
 
 
 class GradientClipping(Callback):
-    """GradientClipping callback, which uses 'torch.nn.utils.clip_grad_value\_' to clip the gradients of the given
+    """GradientClipping callback, which uses 'torch.nn.utils.clip_grad_value_' to clip the gradients of the given
     parameters to the given value. If params is None they will be retrieved from state.
 
     Example: ::
@@ -85,7 +85,7 @@ class GradientClipping(Callback):
         super(GradientClipping, self).__init__()
 
         self.clip_value = clip_value
-        self.params = params
+        self.params = list(params) if params is not None else None
 
     def on_start(self, state):
         """If params is None then retrieve from the model.
@@ -94,7 +94,7 @@ class GradientClipping(Callback):
             state (dict): The :class:`.Trial` state
         """
         if self.params is None:
-            self.params = filter(lambda p: p.requires_grad, state[torchbearer.MODEL].parameters())
+            self.params = list(filter(lambda p: p.requires_grad, state[torchbearer.MODEL].parameters()))
 
     def on_backward(self, state):
         """Between the backward pass (which computes the gradients) and the step call (which updates the parameters),
